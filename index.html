@@ -2,42 +2,30 @@
 <html>
 <head>
 
-
-<style>
-#container {
-    margin: 0px auto;
-    width: 500px;
-    height: 375px;
-    border: 10px #333 solid;
-}
-#videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-}
-</style>
+<link href="index.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
-  
+
 <body>
-<div id="title" style="font-size:100px" align="center">Marist Facial Recognition Sign-In</div>
+<div id="title" style="font-size:100px" align="center">Hackathon Live Feed!</div>
 
 <div id="container"> 
     <video autoplay="true" id="videoElement">
      
     </video>
+	<form><input type='button' id='snapshot' class="myButton" value="Smile!"/></form> 
 </div>
 <div id="imgine">
 	<img src="">
-	<canvas style="display:none;"></canvas> 
+	<canvas style="display:none;" id="myCanvas" ></canvas> 
 </div>
-
 <script>
-  var video = document.querySelector("#videoElement");
+var video = document.querySelector("#videoElement");
   
 if(navigator.webkitGetUserMedia!=null) { 
     var options = { 
         video:true, 
-        audio:true 
+        audio:false 
     }; 
      
     //request webcam access 
@@ -53,19 +41,22 @@ if(navigator.webkitGetUserMedia!=null) {
         } 
     ); 
 } 
+
 </script>
 
-<form><input type='button' id='snapshot' value="snapshot"/></form> 
  
-<canvas id='canvas' width='100' height='100'></canvas> 
+<canvas id='canvas' width='500' height='500'></canvas> 
  
-<script language='javascript'> 
+<script> 
 document.getElementById('snapshot').onclick = function() { 
     var video = document.querySelector('video'); 
     var canvas = document.getElementById('canvas'); 
     var ctx = canvas.getContext('2d'); 
-    ctx.drawImage(video,0,0,100,100); 
+    ctx.drawImage(video,0,0,500,500); 
+	console.log(canvas.toDataURL());
+
 } 
-</script> 
+</script>
+
 </body>
 </html>
